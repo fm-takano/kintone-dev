@@ -155,6 +155,32 @@
         'app.record.index.edit.change.従業員番号'
     ], function(event) {
         empCodeCheck(event);
+        //invalidCheck(event);
+        //mnEvidenceCheck(event);
+
+        return event;
+    });
+
+    var eventList = [
+        'app.record.create.change.不備内容',
+        'app.record.edit.change.不備内容',
+        'app.record.index.edit.change.不備内容',
+        'app.record.create.change.氏名_本人',
+        'app.record.edit.change.氏名_本人',
+        'app.record.index.edit.change.氏名_本人',
+        'app.record.create.change.番号確認資料_本人',
+        'app.record.edit.change.番号確認資料_本人',
+        'app.record.index.edit.change.番号確認資料_本人',
+        'app.record.create.change.本人確認資料_顔あり',
+        'app.record.edit.change.本人確認資料_顔あり',
+        'app.record.index.edit.change.本人確認資料_顔あり',
+        'app.record.create.change.本人確認資料_顔なし',
+        'app.record.edit.change.本人確認資料_顔なし',
+        'app.record.index.edit.change.本人確認資料_顔なし',
+    ];
+
+    kintone.events.on(eventList, function(event) {
+        empCodeCheck(event);
         invalidCheck(event);
         mnEvidenceCheck(event);
 
