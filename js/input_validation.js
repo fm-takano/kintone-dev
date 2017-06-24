@@ -149,6 +149,43 @@
         }
 
     }
+    
+    //編集画面で社番不明が判明した時の処理
+    function proveEmpCode(event){
+        var rec = event['record'];
+        rec['社番判明日付']['error']=null;
+
+        //社番不明
+        var fubiNaiyoValue;
+        for (fubiNaiyoValue in rec['不備内容']['value']) {
+            if (rec['不備内容']['value'][fubiNaiyoValue].match(/社番不明/)) {
+                //社番不明にチェックが入っている
+                rec['社番判明日付']['error']='判明日付を入れてください';
+            }                
+        }
+        //判明日付が入っている
+        if (rec['社番判明日付']['value']){
+            rec['社番判明日付']['error']=null;
+        }
+    }
+
+    //編集画面で会社不明が判明した時の処理
+    function proveCompnyCode(event){
+        var rec = event['record'];
+        rec['会社判明日付']['error']=null;
+
+        //会社不明
+        for (fubiNaiyoValue in rec['不備内容']['value']) {
+            if (rec['不備内容']['value'][fubiNaiyoValue].match(/会社不明/)) {
+                //社番不明にチェックが入っている
+                rec['会社判明日付']['error']='判明日付を入れてください';
+            }                
+        }
+        //判明日付が入っている
+        if (rec['会社判明日付']['value']){
+            rec['会社判明日付']['error']=null;
+        }
+    }
 
     kintone.events.on(['app.record.create.change.従業員番号',
         'app.record.edit.change.従業員番号',
@@ -185,6 +222,34 @@
         mnEvidenceCheck(event);
 
         return event;
+    });
+    
+    //編集画面で社番を変更
+    kintone.events.on(['app.record.edit.change.従業員番号',
+    'app.record.index.edit.change.従業員番号',
+    'app.record.edit.change.社番判明日付',
+    'app.record.index.edit.change.社番判明日付'
+    ],function(event){
+        proveEmpCode(event);
+        return event;
+    });
+
+    //編集画面で会社コードを変更
+    kintone.events.on(['app.record.edit.change.会社コード',
+    'app.record.index.edit.change.会社コード',
+    'app.record.edit.change.会社コード',
+    'app.record.index.edit.change.会社コード'
+    ],function(event){
+        proveCompnyCode(event);
+        return event;
+    });
+    
+    //編集画面の保存前処理
+    kintone.events.on(['app.record.edit.submit','app.record.index.edit.submit'],function(event){
+        proveEmpCode(event);
+        proveCompnyCode(event);
+        return event;
+        
     });
 
 
