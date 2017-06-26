@@ -163,8 +163,10 @@
                 rec['社番判明日付']['error']='判明日付を入れてください';
             }                
         }
-        //判明日付が入っている
-        if (rec['社番判明日付']['value']){
+        //従業員番号と判明日付が入っている、どちらも入っていない
+        if(rec['従業員番号']['value'] && rec['社番判明日付']['value']){
+            rec['社番判明日付']['error']=null;
+        }else if(!rec['従業員番号']['value'] && !rec['社番判明日付']['value']){
             rec['社番判明日付']['error']=null;
         }
     }
@@ -175,14 +177,17 @@
         rec['会社判明日付']['error']=null;
 
         //会社不明
+        var fubiNaiyoValue;
         for (fubiNaiyoValue in rec['不備内容']['value']) {
+            //会社不明にチェックが入っている
             if (rec['不備内容']['value'][fubiNaiyoValue].match(/会社不明/)) {
-                //社番不明にチェックが入っている
                 rec['会社判明日付']['error']='判明日付を入れてください';
             }                
         }
-        //判明日付が入っている
-        if (rec['会社判明日付']['value']){
+        //会社コードと判明日付が入っている、どちらも入っていない
+        if(rec['会社コード']['value'] && rec['会社判明日付']['value']){
+            rec['会社判明日付']['error']=null;
+        }else         if(!rec['会社コード']['value'] && !rec['会社判明日付']['value']){
             rec['会社判明日付']['error']=null;
         }
     }
@@ -214,6 +219,7 @@
         'app.record.create.change.本人確認資料_顔なし',
         'app.record.edit.change.本人確認資料_顔なし',
         'app.record.index.edit.change.本人確認資料_顔なし',
+        'app.record.index.edit.change.種別',
     ];
 
     kintone.events.on(eventList, function(event) {
