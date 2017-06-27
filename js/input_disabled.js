@@ -23,10 +23,14 @@
                 rec['会社コード']['disabled'] = false;
                 rec['会社判明日付']['disabled'] = false;
             }
-            //従業員番号が入っていなければ書き込めるようにする
-            if(!rec['従業員番号']['value']){
-                rec['従業員番号']['disabled'] = false;
-                rec['社番判明日付']['disabled'] = false;
+            //社番不明だったら社員番号を書き込めるようにする
+            if(rec['ステータス']['value'].match(/不備有/) ){
+                for(var elm in rec['不備内容']['value']){
+                    if(rec['不備内容']['value'][elm] === "社番不明"){
+                        rec['従業員番号']['disabled'] = false;
+                        rec['社番判明日付']['disabled'] = false;
+                    }
+                }
             }
         }
         //廃棄日は入力されていなかったらいつでも入れられるようにする
