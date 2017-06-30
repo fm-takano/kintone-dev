@@ -37,6 +37,9 @@
         if(!rec['廃棄日付']['value']){
             rec['廃棄日付']['disabled']=false;
         }
+		//2回目の提出の場合はいつでも入れられるようにする
+		rec['２回目提出']['disabled']=false;
+		rec['２回目提出_初回日付']['disabled']=false;
     }
 
     // 編集画面から保存時のイベント
