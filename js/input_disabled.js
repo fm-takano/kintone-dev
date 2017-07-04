@@ -24,7 +24,7 @@
                 rec['会社判明日付']['disabled'] = false;
             }
             //社番不明だったら社員番号を書き込めるようにする
-            if(rec['ステータス']['value'].match(/不備有/) ){
+            if(rec['ステータス']['value'].match(/不備有/) || rec['ステータス']['value'].match(/社番不明/) ){
                 for(var elm in rec['不備内容']['value']){
                     if(rec['不備内容']['value'][elm] === "社番不明"){
                         rec['従業員番号']['disabled'] = false;
