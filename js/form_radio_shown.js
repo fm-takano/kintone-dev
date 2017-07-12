@@ -24,7 +24,7 @@
 
     // イベント発生時の処理
     var eventList = [
-        'app.record.create.shwow',
+        'app.record.create.show',
         'app.record.edit.show',
         'app.record.index.edit.show',
         'app.record.index.show',

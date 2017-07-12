@@ -16,7 +16,7 @@
                 }
                 else if (empCode.length != 10) {
                     //10桁なければエラー
-                    if (companyCode.substr(0, 3) == 'STE' && empCode.length == 9) {
+                    if (companyCode.substr(0, 3) === 'STE' && empCode.length === 9) {
                         //STEは9桁がある
                     }
                     else {
@@ -24,6 +24,16 @@
                     }
                 }
             }
+        }
+    }
+    
+    //氏名フィールドの長さチェック
+    function lengthCheck(event){
+        var rec = event['record'];
+        var name = rec['氏名_本人']['value'];
+        rec['氏名_本人']['error'] = null;
+        if(name.length > 30 ){
+            rec['氏名_本人']['error'] = '30文字を超えています(' + name.length +'文字)'; 
         }
     }
 
@@ -202,6 +212,16 @@
 
         return event;
     });
+    
+    // 氏名の長さチェック
+    kintone.events.on(['app.record.create.change.氏名_本人',
+        'app.record.edit.change.氏名_本人',
+        'app.record.index.edit.change.氏名_本人'
+    ], function(event) {
+        lengthCheck(event);
+        return event;
+    });
+
 
     var eventList = [
         'app.record.create.change.不備内容',
