@@ -110,6 +110,7 @@
     kintone.events.on([
         'app.record.create.show',
         'app.record.edit.show',
+        'app.record.detail.show',
         'app.record.create.change.申請種別',
         'app.record.edit.change.申請種別',
         'app.record.create.change.削除_申請書テーブル',
