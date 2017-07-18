@@ -109,9 +109,16 @@
                     if (rec['不備内容']['value'][fubiNaiyoValue].match(/社番不明/)) {
                         //ちゃんと不備として判断している
                         errorMessage.pop();
+                        //社番不明のときに、生年月日が入っていない場合
+                        if(!rec['生年月日']['value']){
+                            rec['生年月日']['error']= '入力されていません';
+                        }else{
+                            rec['生年月日']['error']=null;
+                        }
                     }
                 }
             }
+            
             //■会社不明
             if (!rec['会社コード']['value']) {
                 errorMessage.push('会社不明です');
@@ -240,6 +247,9 @@
         'app.record.edit.change.本人確認資料_顔なし',
         'app.record.index.edit.change.本人確認資料_顔なし',
         'app.record.index.edit.change.種別',
+        'app.record.create.change.生年月日',
+        'app.record.edit.change.生年月日',
+        'app.record.index.edit.change.生年月日',
     ];
 
     kintone.events.on(eventList, function(event) {
