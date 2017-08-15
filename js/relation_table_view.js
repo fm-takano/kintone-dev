@@ -133,20 +133,21 @@
         //必要なものだけ開く
         kintone.app.record.setFieldShown(radioVal+'_申請書テーブル', true);
         
+        //非表示フィールドの制御
         disabledField(event,radioVal);
 
+        //件数の表示
+        displayNumberOfRecord(event,radioVal);
+        
         return event;        
 
     });
 
     // 書き込み禁止処理
-    function disabledField(event){
+    function disabledField(event,radioVal){
         // レコード情報を取得
         var rec = event.record;
         
-        // ラジオボタンの設定値を取得
-        var radioVal = rec.申請種別.value;
-
         // 書き込み禁止処理
         var table = rec[radioVal+'_申請書テーブル'].value;
         for (var i = 0; i < table.length; i++) {
@@ -156,6 +157,28 @@
             rowData[radioVal+'_登録状況_氏名_配偶者'].disabled = true;
             rowData[radioVal+'_登録状況_氏名_扶養親族'].disabled = true;
         }
+        return event;
+    }
+    
+    //件数の表示
+    function displayNumberOfRecord(event,radioVal){
+        // レコード情報を取得
+        var rec = event.record;
+        var counter = 0;
+        var table = rec[radioVal+'_申請書テーブル'].value;
+        for (var i = 0; i < table.length; i++) {
+            var rowData = table[i].value;
+            if(rowData[radioVal+'_登録状況_従業員番号'].value){
+                counter++;   
+            }
+        }
+
+        var numberOfRecordSpace = document.createElement('div');
+        numberOfRecordSpace.style.cssText = 'position: absolute;' + 'bottom:0;';
+        numberOfRecordSpace.innerHTML = '件数：' + counter;
+        kintone.app.record.getSpaceElement('number_of_record').textContent = null;
+        kintone.app.record.getSpaceElement('number_of_record').appendChild(numberOfRecordSpace);
+
         return event;
     }
 
