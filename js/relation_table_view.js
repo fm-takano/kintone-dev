@@ -169,7 +169,7 @@
         for (var i = 0; i < table.length; i++) {
             var rowData = table[i].value;
             if(rowData[radioVal+'_登録状況_従業員番号'].value){
-                counter++;   
+                counter += 1;   
             }
         }
 
@@ -187,7 +187,7 @@
         var rec = event.record;
         rec.処理年.value = new Date().getFullYear();
         rec.処理月.value = new Date().getMonth() + 1;
-        return(event);
+        return event;
     });
 
 

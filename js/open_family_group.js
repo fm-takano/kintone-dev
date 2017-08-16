@@ -8,13 +8,14 @@
         for(var key in rec){
             if(key.match(/氏名_扶養/)){
                 if(rec[key].value){
-                    countName++;
+                    countName += 1;
                 }
             }
         }
         if(countName > 0 ){
             kintone.app.record.setGroupFieldOpen('扶養親族グループ',true);
         }
+        return event;
     });
     
 })();

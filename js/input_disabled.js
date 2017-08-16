@@ -4,7 +4,7 @@
     //ステータスが「新規入力」「入力チェック依頼」以外の場合は保存をさせない
     function cancelSave(event) {
 
-        var key,elm
+        var key,elm;
         // レコード情報を取得
         var rec = event['record'];
 
