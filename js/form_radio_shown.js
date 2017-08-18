@@ -6,10 +6,8 @@
 
         // レコード情報を取得
         var rec = event['record'];
-        
         // ラジオボタンの設定値を取得
         var radioVal = rec['申請種別']['value'];
-        
         //全てのグループを閉じる
         kintone.app.record.setFieldShown('削除', false);
         kintone.app.record.setFieldShown('従業員番号変更', false);
@@ -31,9 +29,9 @@
         'app.record.detail.show',
         'app.record.create.change.申請種別',
         'app.record.edit.change.申請種別',
-        ];
+    ];
 
-    kintone.events.on(eventList, function(event){
+    kintone.events.on(eventList, function(event) {
         formShown(event);
         return event;
     });

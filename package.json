@@ -1,0 +1,23 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fm-takano/kintone-dev.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fm-takano/kintone-dev/issues"
+  },
+  "homepage": "https://github.com/fm-takano/kintone-dev#readme",
+  "devDependencies": {
+    "eslint": "^4.4.1",
+    "eslint-config-kintone": "^1.2.0"
+  }
+}
