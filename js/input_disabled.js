@@ -44,6 +44,7 @@
         }
         //不備対応かどうか、はいつでも入れられるようにする
         rec['不備対応']['disabled'] = false;
+        rec['不備対応_日付']['disabled'] = false;
         //2回目の提出の場合はいつでも入れられるようにする
         rec['２回目提出']['disabled'] = false;
         rec['２回目提出_初回日付']['disabled'] = false;
