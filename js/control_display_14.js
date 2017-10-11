@@ -80,17 +80,28 @@
     function openFamilyInputField(event){
         var rec = event.record;
         //扶養親族氏名に名前があったら開く
-        var countName = 0;
+        var count_FamilyName = 0;
+        var count_HaiguName = 0;
         var key;
         for(key in rec){
             if(key.match(/氏名_扶養/)){
                 if(rec[key].value){
-                    countName += 1;
+                    count_FamilyName += 1;
                 }
             }
         }
-        if(countName > 0 ){
+        for(key in rec){
+            if(key.match(/氏名_配偶者/)){
+                if(rec[key].value){
+                    count_HaiguName += 1;
+                }
+            }
+        }
+        if(count_FamilyName > 0 ){
             kintone.app.record.setGroupFieldOpen('扶養親族グループ',true);
+        }
+        if(count_HaiguName > 0 ){
+            kintone.app.record.setGroupFieldOpen('配偶者グループ',true);
         }
         return event;
     }
